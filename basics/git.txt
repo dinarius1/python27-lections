@@ -1,3 +1,13 @@
 git add.   - добавляет все файлы для отслеживания
 git commit -m 'txt'  - записывает все изменения
 git push ssh-link master    - закидывает в гитхаб изменения
+
+Как создать ключ для гита пошагова: 
+ssh keygen -t rsa -b 4096 -C "ashirova158@gmail.com"
+нащимаем несколько раз на пробелы
+cd ~/.ssh/
+cat id_rsa.pub
+(копируем ссылку снизу)
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC73c5M5uoG3Rx2t6JRGfqt9yLcJRSNBLJBDRcZxV1buPQIhgM1Atgs0+prpgaRHfY2v9JDhc2q2aTfecWzN7IC359xa3eSyV84bn3+E830PrN4tgN3bwd9DwVBdex/eVodbD6A3mCfDe9OJ4e/4K7FM+k1DIK7G2PvjB9nh2QT5L41IBgO62TrRaoqkwdJF66wpPUGd5MPnGFezqiMkJ8f5+e4iPAtBVhFBNAsEw5Db7du/U/XEPg7ccuQnsWlwVSYGtEvq+d0z/aH2NGuPHGglIwQ5BaQZhRiJVTlvL1ktNPpzy+yCV/+GuRpYl7Rfd2nQv5BdNZTdHk2ujSpNAuEUG2XeloB0+r546pCLD+KCTNVV8Oc69OSEgcU4YMW4CB32blbIZmHepG++CCJ7CTG+tOHcA9N4+hSJuaNZEBtOAyfORtmsLvh7sS7aa8RThKbUnNTUrNV49SYJkwzBYk1bzgqtR3x2/ApJzoO/NKwhVHkUTNWYNpf7O83Ac4mGgryaKivAseuSVojwIBnF6UtMnKzx5OsS3PaNi4HzfN5HNeWcA0fYRwJni0nRwVc2XUNqRdtRq4l0qKGCnx16Et7//DnYAPs64zqnUxG2XDEjod7aVqE9tzszjUqr2kiHk087pNdQT/j1YFpou+hRIwkTZ71FfOm0EzJ7xFwLma+uw== ashirova158@gmail.com
+затем 
+переходим в гитхаб в настройки и там добавляем новый ключ
