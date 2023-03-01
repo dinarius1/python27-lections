@@ -107,11 +107,24 @@
 
 
 
-dict1 = {'a': 1, 'b': 2, 'c':3}
+# dict1 = {'a': 1, 'b': 2, 'c':3}
 
-for k,v in dict1.copy().items():
-    if v%2:
-        del dict1[k]
+# # for k,v in dict1.copy().items():
+# #     if v%2:
+#         del dict1[k]
 
-print(dict1)
+# print(dict1)
     
+# string = 'I love cake'
+# print(string.split())
+
+string = 'Hello WorlD'
+res = [i for i in string if i.islower()]
+print(res)
+
+# comprehensions = (i for i in range(1,11))
+# print(list(comprehensions))  
+# print(list(comprehensions))
+
+# # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# # []

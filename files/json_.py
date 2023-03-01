@@ -1,0 +1,52 @@
+"================================JSON================================"
+#JavaScript Ogject Notation - единый формат, в котором могут храниться только те типы данных, которые есть во всех яп поддерживающие json
+
+#Типы данных, которые поддерживаются в JSON
+# 1. числа (float, integer)
+# 2. строки
+# 3. списки
+# 4. словари
+# 5. булевые значения
+# 6. nonetype
+
+import json
+
+# сериализация - перевод из питона в json
+#dump - для работы с файлами
+#dumps - функция, которая переводит python obj в json строку
+
+# десериализация - перевод из json в python
+#load - для работы с файлами
+#loads - функция, которая переводит json строку в python объект
+ 
+python_list = [1,2,3]
+json_list = json.dumps(python_list)
+print(type(python_list))
+print(type(json_list))
+
+print(python_list)  #[1,2,3]
+print(json_list)    #'[1,2,3]'
+
+json_dict = '{"a":1, "b" : 2}'
+python_dict = json.loads(json_dict)
+
+print(type(python_dict))  #str
+print(type(json_dict))   #dict - автоматически понимает, что это словарь благодаря своей встроенной система 
+
+list_ = [
+    1,2,3,
+    4.5,
+    (1,2,4),
+    {"A" : 1},
+    'hello',
+    True, False, None
+    # {1,2} - сеты не поддерживаются в json
+]
+
+with open('test.json', 'w') as file:
+    json.dump(list_, file)   #что записать, и куда записать
+
+with open('test.json', 'r') as file:
+    res = json.load(file)
+print(res)
+# [1, 2, 3, 4.5, [1, 2, 4], {'A': 1}, 'hello', True, False, None]

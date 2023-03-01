@@ -21,7 +21,16 @@
 #     dict2 = 
 
 #Задание 25
-# dict_ = {'Bootcamp': 8, 'Makers': 6, 'coding': 6, 'hello': 5}
+# dict_ = {'Bootcamp': 8, 'Makers': 6, 'coding': 4, 'hello': 5}
+
+# maxx = max(dict_.values())
+# # print(maxx)
+
+# for k,v in dict_.items():
+#     if v == maxx:
+#         print(k)
+
+
 # res = []
 # for k,v in list(dict_.items()):
 #     res.append(dict_[k])
@@ -97,15 +106,15 @@
 # print(dict_)
 
 #Задание 30
-dict_ = {1: 2, 3: 4, 4: 3, 2: 1, 0: 0} 
-sorted_values = sorted(dict_.values()) 
-print(sorted_values)
-sorted_dict = {} 
-for i in sorted_values: 
-    for k in dict_.keys():  #- можете обяснить как работуют тут циклы for. в цикеле с i и k. и как тут работает команла иф снизу
-        if dict_[k] == i: 
-            sorted_dict[k] = dict_[k]  # и мы тут рассмотриваем именно значения двух словарей, да? не их ключей? или так как сортед дикт = дикт, то и ключи также перемещаются в сортед дикт? как вообще появились ключи в сортед дикт?
-print(sorted_dict)
+# dict_ = {1: 2, 3: 4, 4: 3, 2: 1, 0: 0} 
+# sorted_values = sorted(dict_.values()) 
+# print(sorted_values)
+# sorted_dict = {} 
+# for i in sorted_values: 
+#     for k in dict_.keys():  #- можете обяснить как работуют тут циклы for. в цикеле с i и k. и как тут работает команла иф снизу
+#         if dict_[k] == i: 
+#             sorted_dict[k] = dict_[k]  # и мы тут рассмотриваем именно значения двух словарей, да? не их ключей? или так как сортед дикт = дикт, то и ключи также перемещаются в сортед дикт? как вообще появились ключи в сортед дикт?
+# print(sorted_dict)
 
 
 #Задание 32
@@ -167,6 +176,20 @@ print(sorted_dict)
 #     list2.append(total)   # почемы тотал не добавляется
 # print(list2)
 
+# dict1 = {1: 1, 2: 2, 3: 3, 4: 4, 5: 5} 
+# dict2 = {} 
+# for k,v in dict1.items(): 
+#     dict2.setdefault(k,k**3) 
+# print(dict2)
+
+#Задание 23
+# dict1 = {25: 'apple', 26: 'orange', 27: 'banana'} 
+# dict2 = {}
+# for k in dict1.keys():
+#     dict2.get(k, k ** 2)
+# for k,v in dict1.items():
+#     dict2.setdefault(k,)
+# print(dict2)
 #Множества.
 #Задание 13
 robert = {5, 7, 11, 10, 28} 
@@ -182,9 +205,19 @@ elif robert & merri:
 else:
     print('no one')
 
-#Задание 15
-ingredients = {"cыр чеддар","грибы", "соус","шпинат"} 
-ingredients.add('помидоры')
-ingredients.remove('колбаса')
-ingredients.remove("шпинат")
-ingredients.rep
+# #Задание 15
+# ingredients = {"cыр чеддар","грибы", "соус","шпинат"} 
+# ingredients.add('помидоры')
+# ingredients.remove('колбаса')
+# ingredients.remove("шпинат")
+# ingredients.rep
+
+
+# dict1 = {25: 'apple', 26: 'orange', 27: 'banana'} 
+# dict2 = {}
+
+# # for k,v in dict1.items():
+# #     dict2[v] = k**2
+# # print(dict2)
+
+# dict2 = {}

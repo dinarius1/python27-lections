@@ -1,0 +1,54 @@
+<!-- Есть ординарные и парные теги
+    Ординарные теги, это такие теги, которые хранят в себе какуб то информацию и мы не будем их менять в дальнейшем (это например фтографии)
+
+    Двойные теги - это два дублирующих себе тега (<head> ... <head> )
+
+    Существующие теги:
+    <h1> (до <h6>)
+
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello</title>
+</head>
+<style>
+    h1 {
+        color:brown 
+    }
+    /* для классов */
+    .red-text {
+        color:crimson
+    }
+    .yellow-text {
+        color: gold;
+    }
+    /* # для id */
+    #last {
+        border: 3px dotted green;
+        background-color: blueviolet;
+    }
+
+    img {
+        width: 500px;
+    }
+</style>
+<body>
+    <h1>Hello world</h1>
+    <p class="red-text">Lorem ipsum dolor sit.</p>
+    <p class="yellow-text">Lorem ipsum dolor sit.</p>
+    <p class="red-text">Lorem ipsum dolor sit.</p>
+    <p class="yellow-text" id="last">Lorem ipsum dolor sit.</p>
+    <!-- <h2>Hello world</h2>
+    <h3>Hello world</h3>
+    <h4>Hello world</h4>
+    <h5>Hello world</h5>
+    <h6>Hello world</h6>
+    <p>Hello world</p> -->
+
+    <img src="https://i.ytimg.com/vi/DWq5q0au_qc/maxresdefault.jpg" alt="Sorry :0">
+</body>
+</html>

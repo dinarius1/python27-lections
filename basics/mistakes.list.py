@@ -40,7 +40,7 @@ print(new_list)
 # Задание 14
 list_ = [1,2,3]
 new_list = sorted(list_)
-if new_list[0] == new_list[1]:
+if new_list[0] == new_list[1] or new_list[-1] == new_list[-2]:
     print('yes')
 else:
     print('ERROR')
@@ -208,26 +208,29 @@ else:
     
 
 #Задание 27
-# list1 = [1,2,3,4,5]
-# list2 = [5,6,7,8,9]
-# res = []
-# for i in list1:
-#     if i in list2:
-#         print('True')
-#     else:
-#         print("False")
+list1 = [1,2,3,4,5]
+list2 = [5,6,7,8,9]
+res = []
+for i in list1:
+    if i in list2:
+        res.append(i)
+
+if len(res) > 0:
+    print(True)
+else:
+    print(False)
     
 
 
 
 #Задание 28 
-list_ = [4, 6, 4, 3, 3, 8, 4, 3, 4, 3, 8, 8]
-repeats = 3
-res = []
-for i in list_:
-    if list_.count(i) >= repeats and i not in res:
-        res.append(i)
-print(res)
+# list_ = [4, 6, 4, 3, 3, 8, 4, 3, 4, 3, 8, 8]
+# repeats = 3
+# res = []
+# for i in list_:
+#     if list_.count(i) >= repeats and i not in res:
+#         res.append(i)
+# print(res)
 
 #Задание 29
 # list_ = [1, 2, 3]

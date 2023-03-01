@@ -3,9 +3,10 @@
 list1 = []
 for i in range(1,11):
     list1.append(i)
-#list1 = [1,2,3,4,5,6,7,8,9,10]
-list1 = [i for i in range(1,11)]  #мы  в начале написали i, чтобы добавить в список
-print()
+#[1,2,3,4,5,6,7,8,9,10]
+list1 = [i for i in range(1,11)]
+print(list1)
+#[1,2,3,4,5,6,7,8,9,10]
 
 # Синтаксис генератора:
 # результат for элемент in последовательность
@@ -78,7 +79,16 @@ list5 = [[x for x in range(1,i + 1)] for i in range(1,6)]
 print(list5)
 
 #Как вытащить вложенный список из списка с помощью генератора? 
-#В гите у Насти взять!!!!!!!!!!!!!
+list1 = [[1,2,3],[4,5,6],[7,8,9],[10,11,12]]
+# Результат: res = [1,2,3,4,5,6,7,8,9,10,11,11,12]
+
+res = [i for inner_list in list1 for i in inner_list]
+# res = []
+# for inner_list in list1:
+#     for i in inner_list:
+#         res.append(i)
+print(res)
+#[1,2,3,4,5,6,7,8,9,10,11,11,12]
 
 dict1 = {'a' : 1, 'b' : 2, 'c' : 3}
 #1 способ
