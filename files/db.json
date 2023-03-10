@@ -3,24 +3,24 @@
       "id": 1,
       "title": "iphone",
       "price": 700,
-      "rating": 1
+      "rating": 4.8
     },
     {
       "id": 2,
       "title": "asus",
       "price": 1300,
-      "rating": 4
+      "rating": 3.9
     },
     {
       "id": 3,
       "title": "macbook pro",
       "price": 1500,
-      "rating": 2
+      "rating": 4.9
     },
     {
       "id": 4,
       "title": "samsung",
       "price": 150,
-      "rating": 5
+      "rating": 5.0
     }
   ]

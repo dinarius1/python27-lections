@@ -11,13 +11,14 @@
 
 import json
 
-# сериализация - перевод из питона в json
-#dump - для работы с файлами
-#dumps - функция, которая переводит python obj в json строку
 
-# десериализация - перевод из json в python
-#load - для работы с файлами
-#loads - функция, которая переводит json строку в python объект
+# сериализация - перевод из python в json
+# dump - функция, которая переводит python обьект в json строку и записывает в файл
+# dumps - функция, которая переводит python обьект в json строку
+
+# десерализация - перевод из json в python
+# load - функция, которая переводит json строку в python обьект и записывает в файл
+# loads - функция, которая переводит json строку в python обьект
  
 python_list = [1,2,3]
 json_list = json.dumps(python_list)
@@ -44,7 +45,7 @@ list_ = [
 ]
 
 with open('test.json', 'w') as file:
-    json.dump(list_, file)   #что записать, и куда записать
+    json.dump(list_, file)   #в скобках мы пишем, 1.что записать, и 2.куда записать
 
 with open('test.json', 'r') as file:
     res = json.load(file)
