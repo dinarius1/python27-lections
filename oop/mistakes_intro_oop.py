@@ -75,3 +75,15 @@ class Phone:
         print(f'Контакт: {self.name} {self.last_name}, телефон: {self.phone}')
 contact = Phone('John', 'Snow', '996707707707')
 contact.get_info()
+
+#Task 6
+class Salary:
+    percent = 8
+    def __init__(self, salary, experience):
+        self.salary = salary 
+        self.experience = experience 
+    def count_percent(self):
+        res = ((self.salary  * self.percent) / 100) * self.experience
+        return res
+obj = Salary(10000, 10)
+print(obj.count_percent()) 

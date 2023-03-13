@@ -159,4 +159,64 @@ print(taxi1.get_total_cost(10))
 print(taxi2.get_total_cost(6)) 
 print(taxi3.get_total_cost(14))
 ```
+## Задание 5
 
+Создайте класс телефонной книги Phone. У контактов должны быть такие аттрибуты:
+
+    name - имена
+    last_name - фамилии
+    phone - телефонные номера
+
+Добавьте метод get_info, который выводит информацию о контакте в следующем виде:
+
+contact.get_info()
+
+Вывод в терминал:
+
+Контакт: John Snow, телефон: +996707707707
+
+Затем, создайте объект от класса Phone в переменной contact и примените метод get_info
+
+```py
+class Phone:
+    def __init__(self, name, last_name, phone):
+        self.name = name
+        self.last_name = last_name
+        self.phone = phone
+    def get_info(self):
+        print(f'Контакт: {self.name} {self.last_name}, телефон: {self.phone}')
+contact = Phone('John', 'Snow', '996707707707')
+contact.get_info()
+```
+## Задание 6
+
+Напишите класс Salary для расчета налогов на заработную плату. У класса должна быть обязательная переменная класса - percent = 8, обозначающий процент налога на ежемесячную зарплату - 8%.
+
+Объекты класса должны иметь, в качестве атрибутов сумму зарплаты salary и стаж работы в месяцах - experience.
+
+Также у класса должен быть метод count_percent, расчитывающий сумму налога заплаченного за весь стаж работы.
+
+Создайте экземпляр класса obj и посчитайте сумму вашего налога.
+
+К примеру, если у вашего объекта salary имеет значение 10000, а experience равен 10, то:
+
+print(obj.count_percent()) 
+
+Выдаст вам такой результат в терминале:
+
+8000.0 
+
+Каждый месяц с зарплаты в 10000 сомов снимается 8% на налоги, т.е 800 сом, за 10 месяцев трудового стажа эта сумма будет 8000.0 сом
+
+```py
+class Salary:
+    percent = 8
+    def __init__(self, salary, experience):
+        self.salary = salary 
+        self.experience = experience 
+    def count_percent(self):
+        res = ((self.salary  * self.percent) / 100) * self.experience
+        return res
+obj = Salary(10000, 10)
+print(obj.count_percent()) 
+```
