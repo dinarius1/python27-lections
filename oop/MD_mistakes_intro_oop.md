@@ -220,3 +220,50 @@ class Salary:
 obj = Salary(10000, 10)
 print(obj.count_percent()) 
 ```
+
+## Задание 7
+
+Вам дан такой код:
+
+winner1 = Nobel("Литература", 1971, "Пабло Неруда") 
+print(winner1.category, winner1.year, winner1.winner) 
+print(winner1.get_year())
+
+  
+winner2 = Nobel("Литература", 1994, "Кэндзабуро Оэ") 
+print(winner2.category, winner2.year, winner2.winner) 
+print(winner2.get_year())
+
+который выводит в терминал такие значения:
+
+Литература 1971 Пабло Неруда
+выиграл 51 лет назад 
+Литература 1994 Кэндзабуро Оэ 
+выиграл 28 лет назад
+
+Напишите класс Nobel, который будет принимать аттрибуты category, yearи winner. Создайте метод get_year(), который будет выводить сколько лет назад была получена премия в виде 'выиграл {кол-во лет} лет назад'.
+
+    Дату сколько лет назад была получена премия в методе get_year() не вписывать вручную, а высчитывать используя datetime
+
+```py
+import datetime
+now = datetime.datetime.now()
+now2 = str(now).split()[0].split('-')[0]
+date_now = int(now2)
+
+class Nobel:
+    def __init__(self, category, year, winner):
+        self.category = category 
+        self.year = year
+        self.winner = winner
+    def get_year(self):
+        return f'выиграл {date_now - self.year} лет назад'
+winner1 = Nobel("Литература", 1971, "Пабло Неруда") 
+print(winner1.category, winner1.year, winner1.winner) 
+print(winner1.get_year())
+
+  
+winner2 = Nobel("Литература", 1994, "Кэндзабуро Оэ") 
+print(winner2.category, winner2.year, winner2.winner) 
+print(winner2.get_year())
+```
