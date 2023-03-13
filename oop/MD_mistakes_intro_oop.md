@@ -333,3 +333,102 @@ p = Password('12345678q!#')
 print(p.validate())
 print(p)
 ```
+
+## Задание 9
+
+Создайте класс Math, у экземпляра которого должно быть свойство number. У классa Math должно быть 3 метода:
+
+    get_factorial - возвращает факториал числа(перемножить все составные числа до самого числа)
+
+    get_sum - возвращает сумму цифр числа
+
+    get_mul_table - возвращает таблицу умножения для числа до 10 в формате:
+
+5x1=5
+5x2=10
+5x3=15
+5x4=20
+5x5=25
+5x6=30
+5x7=35
+5x8=40
+5x9=45
+5x10=50
+
+Создайте экземпляр класса и примените к нему все методы.
+
+Например, если экземпляром класса Math является число 11,
+
+вызов get_factorial возвратит такой результат:
+
+39916800 
+
+т.к 1 x 2 x 3 x 4 x 5 x 6 x 7 x 8 x 9 x 10 x 11 = 39916800
+
+метод get_sum, возвратит:
+
+2 
+
+т.к число 11 состоит из двух цифр 1 и 1, сумма 1 + 1 = 2
+
+метод get_mul_table возвратит:
+
+11 x 1 = 11 
+11 x 2 = 22 
+11 x 3 = 33 
+11 x 4 = 44 
+11 x 5 = 55 
+11 x 6 = 66 
+11 x 7 = 77 
+11 x 8 = 88 
+11 x 9 = 99 
+11 x 10 = 110 
+
+    результат методов возвращайте ключевым словом return, print() использовать не надо.
+
+> Тут хорошо показано, как возможно включать элементы в строку, сохраняя прошлый результат и все в рамках функции!!! - весьма интересный вариант
+```py
+class Math:
+    def __init__(self, number):
+        self.number = number
+
+    def get_factorial(self):
+        res = 1
+        for i in range(1, int(self.number) + 1):
+            res *= i
+        return res
+    
+    def get_sum(self):
+        if len(str(self.number)) == 3:
+            one = int(self.number) // 100
+            two = int(self.number) // 10 % 10
+            three = int(self.number) % 100 % 10
+            summary = one + two + three
+            return summary
+        else:
+            one = int(self.number) // 10
+            two = int(self.number) % 10
+            summary = one + two
+            return summary
+    
+    def get_mul_table(self):
+        table = ''
+        for i in range(1,11):
+            res = int(self.number) * i
+            table = table + f'{self.number} x {i} = {res}' + '\n'
+        return table
+
+n = Math(106)
+print(n.get_factorial())
+print(n.get_sum())
+print(n.get_mul_table())
+```
+
+> НО! Это наилучший вариант, если можно использовать print при вызове метода!!! Тут мы именно будем по порядку вызывать каждую нашу строку из таблицы умножения, и это выглядит красиво и лаконично
+```py
+    def get_mul_table(self):
+        table = []
+        for i in range(1,11):
+            res = int(self.number) * i
+            print(f'{self.number} x {i} = {res}')
+```

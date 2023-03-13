@@ -112,6 +112,7 @@ print(winner2.get_year())
 
 
 #Task 8
+
 class Password:
     def __init__(self, password):
         self.password = password
@@ -146,4 +147,39 @@ p = Password('12345678q!#')
 print(p.validate())
 print(p)
 
+#Task 9 - есть два вида решения
 
+class Math:
+    def __init__(self, number):
+        self.number = number
+
+    def get_factorial(self):
+        res = 1
+        for i in range(1, int(self.number) + 1):
+            res *= i
+        return res
+    
+    def get_sum(self):
+        if len(str(self.number)) == 3:
+            one = int(self.number) // 100
+            two = int(self.number) // 10 % 10
+            three = int(self.number) % 100 % 10
+            summary = one + two + three
+            return summary
+        else:
+            one = int(self.number) // 10
+            two = int(self.number) % 10
+            summary = one + two
+            return summary
+    
+    def get_mul_table(self):
+        table = ''
+        for i in range(1,11):
+            res = int(self.number) * i
+            table = table + f'{self.number} x {i} = {res}' + '\n'
+        return table
+
+n = Math(106)
+print(n.get_factorial())
+print(n.get_sum())
+print(n.get_mul_table())
