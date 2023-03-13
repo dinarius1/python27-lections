@@ -109,3 +109,95 @@ print(winner1.get_year())
 winner2 = Nobel("Литература", 1994, "Кэндзабуро Оэ") 
 print(winner2.category, winner2.year, winner2.winner) 
 print(winner2.get_year())
+
+'''
+Задание 8
+
+Создайте класс Password, экземеплярами класса являются пароли в виде строк. У класса должен быть метод validate для валидации пароля:
+
+    В начале, проверьте, что пароль состоит из минимум 8 символов, но меньше 15, если условие не соблюдено, должны выйти ошибка с текстом:
+
+Password should be longer than 8, and less than 15
+
+    Вторая проверка должна проверять что пароль содержит цифры, и в случае отсутствия цифр, выводить ошибку с текстом:
+
+Password should contain numbers too
+
+    Третья проверка, проверяет содержит ли пароль буквы и в случае не совпадения, выводит ошибку с текстом:
+
+Password should contain letters as well
+
+    В конце проверьте, содержит ли пароль хотя бы один из символов: '@', '#', '&', '$', '%', '!', '~', '*', если условие не выполнено выводите ошибку с текстом:
+
+Your password should have some symbols
+
+если одно из условий не выполнено, выводите соответствующее исключение, если же все условия выполнены метод validate должен возвращать строку:
+
+Ваш пароль сохранен.
+
+Также переопределите метод __str__, чтобы при попытке распечатать сам пароль, вам выдавалась строка из звездочек количество которых равно длине пароля.
+
+К примеру, если пароль joe@123456, при попытке распечатать пароль, в терминал должно выводиться: **********
+
+    пишите код для проверки пароля в указанном порядке
+
+'''
+
+class Password:
+    def __init__(self, password):
+        self.password = password
+
+    def validate(self):
+        res = 15 > len(self.password) > 8
+        res2 = [el for el in list(self.password) if el.isdigit()]
+        res3 = [el for el in list(self.password) if el.isalpha()]
+        list_symbols = ['@', '#', '&', '$', '%', '!', '~', '*',]
+        res4 = [s for s in list_symbols if s in self.password]
+
+        if bool(res) == False:
+            print('Password should be longer than 8, and less than 15')
+        
+        elif len(res2) == 0:
+            print('Password should contain numbers too')
+        
+        elif len(res3) == 0:
+            print('Password should contain letters as well')
+    
+        elif len(res4) == 0:
+            print('Your password should have some symbols')
+        else:
+            return 'Ваш пароль сохранен.'
+    def __str__(self):
+        res5 = ''
+        for el in self.password:
+            res5 = res5 + '*' 
+        return res5
+
+p = Password('12345678q!#')
+print(p.validate())
+print(p)
+
+# self = 'kasdkjas@#'
+# list_symbols = ['@', '#', '&', '$', '%', '!', '~', '*',]
+# # el for el in list(self) 
+
+# print(res4)
+# if '@'or '#' or '&'or '$' or '%' or '!' or '~' or '*' not in self:
+#     print('Your password should have some symbols')
+# self = 'kasdkjas'
+# r = list(self)
+# rr = []
+# for el in r:
+#     if el.isdigit():
+#         rr.append(el)
+# print(len(rr))
+
+
+# res2 = [el for el in self if int(el) == type(1)]
+# print(res2)
+
+# self = 10
+# res = 15 > self > 8
+# res = self > 8 and self < 15
+
+
