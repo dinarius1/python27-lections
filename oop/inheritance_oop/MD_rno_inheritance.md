@@ -195,4 +195,117 @@ obj_student.display()
 obj_student.display_student() 
 ```
 
+## Задание 7
+
+Создайте класс SmartPhones, экземпляры класса должны иметь такие свойства:
+
+    name - название
+    color - цвет
+    memory - память
+    battery - процент заряда батареи
+
+Значение battery по умолчанию должно быть 0.
+
+Переопредилите метод str так чтобы при распечатке он выдавал строку с названием и памятью смартфона.
+
+У данного класса также должен быть метод charge, который увеличивает значение батареи на указанную величину.
+
+Создайте два дочерних класса от Smartphones:
+
+    Iphone - с дополнительным аттрибутом экземпляра - ios и методом send_imessage(принимает в аргументы строку и возвращает эту строку и от какого телефона сообщение было выслано в таком формате - sending 'ваша строка' from 'название объекта-телефона')
+
+    Samsung - с дополнительным аттрибутом android и методом show_time(который показывает текущее время)
+
+Создайте объекты phone, iphone7, samsung21 от классов SmartPhones, Iphone, Samsung и примените все методы.
+
+Для правильной работы тестов, проделайте все следующие операции:
+
+создайте объект от класса SmartPhones:
+
+phone = SmartPhones('generic', 'blue', '128GB') 
+print(phone) 
+
+вывод:
+
+generic 128GB
+
+распечатайте свойство батарейки,затем примените метод charge(), зарядив телефон до 20%:
+
+print(phone.battery) 
+phone.charge(20) 
+print(phone.battery) 
+
+получим в терминале:
+
+0 
+20 
+
+создайте объект от класс Iphone, распечатайте этот объект, и примените метод send_imessage:
+
+iphone7 = Iphone('Iphone 7', 'gold', '128gb', '12.1.3') 
+print(iphone7)
+print(iphone7.send_imessage('hello')) 
+
+вывод будет:
+
+Iphone 7 128gb 
+sending hello from Iphone 7 128gb 
+
+создайте объект от Samsung и примените метод show_time():
+
+samsung21 = Samsung('Samsung A21', 'black', '256gb', 'Oreo') 
+print(samsung21.show_time()) 
+
+вывод будет:
+
+18:37:02.712036 
+
+```py
+import datetime
+
+class SmartPhones:
+    battery = 0
+    def __init__(self, name, color, memory):
+        self.name = name
+        self.color = color
+        self.memory = memory
+
+    def charge(self, num):
+        self.battery += num
+        return self.battery
+
+    def __str__(self):
+        return f"{self.name} {self.memory}"
+class Iphone(SmartPhones):
+    def __init__(self, name, color, memory, ios):
+        super().__init__(name, color, memory)
+        self.ios = ios
+    def send_imessage(self, message):
+        self.message = message
+        name = self.name + ' ' + self.memory
+        return f"sending {self.message} from {name}"
+
+class Samsung(SmartPhones):
+    def __init__(self, name, color, memory, android):
+        super().__init__(name, color, memory)
+        self.android = android
+    def show_time(self):
+        now = datetime.datetime.now()
+        now2 = str(now).split()[-1]
+        return now2
+
+phone = SmartPhones('generic', 'blue', '128GB') 
+print(phone)
+print(phone.battery) 
+phone.charge(20) 
+print(phone.battery) 
+
+iphone7 = Iphone('Iphone 7', 'gold', '128gb', '12.1.3') 
+print(iphone7)
+print(iphone7.send_imessage('hello')) 
+
+samsung21 = Samsung('Samsung A21', 'black', '256gb', 'Oreo') 
+print(samsung21.show_time()) 
+```
+
 
