@@ -136,4 +136,11 @@ name:Rick, age:21, faculty:science
 # all_contacts = ContactList(['Ivan', 'Maris', 'Olga', 'Ivan Olya', 'Olya Ivan', 'ivan']) 
 # print(all_contacts.search_by_name('Olya')) 
 
-raise Exception
+class CustomError(Exception):
+    def __init__(self, capitals_error):
+        self.raise
+        self.capitals_error = capitals_error
+
+def check_letters(string):
+    if string.isupper() == False:
+        raise super
