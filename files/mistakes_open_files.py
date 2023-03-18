@@ -47,14 +47,15 @@
 #                 i += 1 else: for i in l
 
 #Task 7
-# def longest_words(filename):
-#     with open(filename, 'r') as file:
-#         res = [i.split() for i in file.readlines()]
-#         res2 = [inner for i in res for inner in i]
-#         res2.sort(key = len)
-#         result = [i for i in res2 if len(i) == len(res2[-1])]
-#         if len(result) > 1:
-#             print(result)
-#         else:
-#             print(result[0])
-# longest_words('article.txt')
+def longest_words(filename):
+    with open(filename, 'r') as file:
+        res = [i.split() for i in file.readlines()]
+        res2 = [inner for i in res for inner in i]
+        res2.sort(key = len)
+        result = [i for i in res2 if len(i) == len(res2[-1])]
+        print(res)
+        # if len(result) > 1:
+        #     print(result)
+        # else:
+        #     print(result[0])
+longest_words('article.txt')

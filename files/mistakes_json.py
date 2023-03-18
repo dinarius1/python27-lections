@@ -19,11 +19,11 @@
 
 
 # #Task 6
-# # import json
-# # json_products = '[{"title":"iphone","price":700,"rating":4.8},{"title":"asus","price":1300,"rating":3.9},{"title":"macbook pro","price":1500,"rating":4.9},{"title":"samsung","price":150,"rating":5.0}]'
-# # python_products = json.loads(json_products)
-# # python_products2 = [i['title'] for i in python_products if i["rating"] > 4]
-# # print(python_products2)
+import json
+json_products = '[{"title":"iphone","price":700,"rating":4.8},{"title":"asus","price":1300,"rating":3.9},{"title":"macbook pro","price":1500,"rating":4.9},{"title":"samsung","price":150,"rating":5.0}]'
+python_products = json.loads(json_products)
+python_products2 = [i['title'] for i in python_products if i["rating"] > 4]
+print(python_products2)
 
 
 # Task 7
@@ -49,13 +49,13 @@
 # #     json.dump(json2, f2)
 
 # # Правильное решение
-# # import json
-# # with open('test.json') as f:
-# #     python = json.loads(f.read())
-# #     for i in python:
-# #         i['discription'] = 'black'
-# # with open('new_db.json', 'w+') as f2:
-# #     json.dump(python, f2)
+import json
+with open('test.json') as f:
+    python = json.loads(f.read())
+    for i in python:
+        i['discription'] = 'black'
+with open('new_db.json', 'w+') as f2:
+    json.dump(python, f2)
 
 
 # #Task 8
