@@ -188,4 +188,48 @@ print(b.get_info())
 print(c.get_info()) 
 ```
 > когд в задании пишут, что надо создать абстрактный класс, то имеется в виду надо создать некий класс-пустышку, от которого нельзя будет создавать экземпляры, но можно булет наследоваться. А САМОЕ ГЛАВНОЕ, что данный класс требует от дочерних от него классов создавать методы, которые были прописаны в этом классе-пустышки
+
 > однако для этого надо будет импортировать метод abstractmethod и потом его задекорировать
+
+## Задание 5
+
+Создайте два класса: Square и Triangle.
+
+Класс Square должен иметь атрибуты: side - длина стороны квадрата.
+
+Класс Triangle должен иметь аттрибуты: height - высота, base - длина.
+
+У каждого из вышеуказанных классов должен быть метод get_area, который высчитывает и возвращает площадь - результатом должно быть целое число.
+
+Создайте третий класс Pyramid который наследуется от первых двух классов, init унаследуйте от Triangle, дополнительные аттрибуты присваивать нельзя.
+
+Добавьте метод get_volume для расчета объема пирамиды(формула: 1/3 x основание^2 x высоту), метод должен возвращать целое число.
+
+```py
+class Square:
+    def __init__(self, side):
+        self.side = side
+
+    def get_area(self):
+        return self.side * self.side 
+
+class Triangle:
+    def __init__(self, height, base):
+        self.height = height
+        self.base = base
+
+    def get_area(self):
+        return 1/2 * self.base * self.height
+
+class Pyramid(Triangle, Square):
+    def __init__(self,height, base):
+        super().__init__(height, base)
+    
+    def get_volume(self):
+        
+        return int(1/3 * self.base **2 * self.height)
+
+p = Pyramid(10,10)
+print(p.get_volume())
+
+```

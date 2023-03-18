@@ -149,3 +149,119 @@ print(a.get_info())
 print(b.get_info()) 
 print(c.get_info()) 
 
+'''
+Создайте два класса: Square и Triangle.
+
+Класс Square должен иметь атрибуты: side - длина стороны квадрата.
+
+Класс Triangle должен иметь аттрибуты: height - высота, base - длина.
+
+У каждого из вышеуказанных классов должен быть метод get_area, который высчитывает и возвращает площадь - результатом должно быть целое число.
+
+Создайте третий класс Pyramid который наследуется от первых двух классов, init унаследуйте от Triangle, дополнительные аттрибуты присваивать нельзя.
+
+Добавьте метод get_volume для расчета объема пирамиды(формула: 1/3 x основание^2 x высоту), метод должен возвращать целое число.
+'''
+class Square:
+    def __init__(self, side):
+        self.side = side
+
+    def get_area(self):
+        return self.side * self.side 
+
+class Triangle:
+    def __init__(self, height, base):
+        self.height = height
+        self.base = base
+
+    def get_area(self):
+        return 1/2 * self.base * self.height
+
+class Pyramid(Triangle, Square):
+    def __init__(self,height, base):
+        super().__init__(height, base)
+    
+    def get_volume(self):
+
+        return int(1/3 * self.base **2 * self.height)
+
+p = Pyramid(10,10)
+print(p.get_volume())
+
+'''
+Создайте класс ToDo, с аттрибутом класса, в виде словаря todos = {}.
+
+У класса должен быть один метод set_deadline, который принимает дату дедлайна (в виде "31/12/2021") и возвращает количество дней оставшихся до дедлайна.
+
+Также, класс ToDo должен наследоваться от четырех миксинов: CreateMixin, DeleteMixin, UpdateMixin, ReadMixin:
+
+    в классе CreateMixin определите метод create, который принимет в себя задачу todo и ключ key по которому нужно добавить задачу в словарь todos, если ключ уже существует верните "Задача под таким ключём уже существует".
+
+    класс DeleteMixin должен содержать метод delete, который удаляет задачу по ключу key, который передается как аргумент, и возвращает сообщение 'удалили название задачу', где вместо слова название должно быть название задачи.
+
+    класс UpdateMixin должен содержать метод update, который принимает в себя ключ key и новое значение new_value и заменяет задачу под данным ключом на новое значение.
+
+    класс ReadMixin должен содержать метод read, который возвращает отсортированный список задач.
+
+'''
+import datetime
+now_1 = datetime.datetime.now()
+# print(now_1)
+
+class CreateMixin:
+    def create(self, key, todo):
+        model = self.__class__   #теперь в model - класс ProductCrud
+        obj = model()
+        obj.todo = todo
+        if key not in model.todos.keys():
+            model.todos[key] = obj.todo
+            return model.todos
+        return "Задача под таким ключём уже существует"
+
+class DeleteMixin:
+    def delete(self, key):
+        model = self.__class__   #теперь в model - класс ProductCrud
+        obj = model()
+        popped = model.todos.pop(key)
+        return popped
+        # return f"удалили {popped}"
+    
+class UpdateMixin:
+    def update(self, key, new_value):
+        model = self.__class__   #теперь в model - класс ProductCrud
+        obj = model()
+        obj.new_value = new_value
+        model.todos[key] = new_value
+        return model.todos
+    
+class ReadMixin:
+    def read(self):
+        model = self.__class__   #теперь в model - класс ProductCrud
+        obj = model()
+        return sorted(model.todos.items())
+
+
+class ToDo(CreateMixin, DeleteMixin, UpdateMixin, ReadMixin):
+    todos = {}
+    def set_deadline(self,date):
+        self.date = date
+        res2 = self.date.split('/')
+        res2 = list(reversed(res2))
+        res2 = [int(i) for i in res2]
+        res3 = datetime.datetime(res2[0], res2[1], res2[2])
+        # tdelta = res3 - now_1
+        tdelta = now_1 - res3
+        return tdelta.days
+
+
+      
+task = ToDo()
+
+print(task.create(1, 'Do housework'))
+print(task.create(1, 'Do housework'))
+print(task.create(2, 'Go for a walk'))
+print(task.update(1, 'Do homework'))
+print(task.delete(2))
+print(task.read())
+print(task.set_deadline('31/12/2021')) #выходит все время 443, а не -443, как хочет платформа
+print(task.todos)
