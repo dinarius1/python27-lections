@@ -309,3 +309,60 @@ print(g.get_extensions())
 print(g.remove_extension('Tekken'))
 print(g.get_extensions())
 ```
+
+## Таск 8
+
+Создайте класс WalkMixin с методом walk, который будет выводить "я могу ходить"
+
+Создайте класс FlyMixin с методом fly, который будет выводить "я могу летать"
+
+Создайте класс SwimMixin с методом swim, который будет выводить "я могу плавать"
+
+    Создайте класс Human, который будет наследоваться от миксинов WalkMixin и SwimMixin
+    Создайте класс Fish, который будет наследоваться от миксина SwimMixin
+    Создайте класс Exocoetidae, который будет наследоваться от миксинов FlyMixin и SwimMixin
+    Создайте класс Duck, который будет наследоваться от всех 3 миксинов
+
+Создайте обьекты от классов Human, Fish, Exocoetidae, Duck и вызовите методы, которые у них есть от миксинов
+
+```py
+class WalkMixin:
+    def walk(self):
+        print("я могу ходить")
+
+class FlyMixin:
+    def fly(self):
+        print("я могу летать")
+
+class SwimMixin:
+    def swim(self):
+        print("я могу плавать")
+
+class Human(WalkMixin, SwimMixin):
+    pass
+
+class Fish(SwimMixin):
+    pass
+
+class Exocoetidae(FlyMixin, SwimMixin):
+    pass
+
+class Duck(WalkMixin, SwimMixin, FlyMixin):
+    pass
+
+human = Human()
+human.walk()
+human.swim()
+
+fish = Fish()
+print(fish.swim())
+
+fly_fish = Exocoetidae()
+fly_fish.swim()
+fly_fish.fly()
+
+duck = Duck()
+duck.swim()
+duck.fly()
+duck.walk()
+```
