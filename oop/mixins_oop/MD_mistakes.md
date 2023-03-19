@@ -233,3 +233,79 @@ p = Pyramid(10,10)
 print(p.get_volume())
 
 ```
+## Задание 7
+
+Напишите класс Game, с помощью которого можно создать объекты-игры, у объектов должны быть атрибуты:
+
+    type_ - тип игры
+    name - название игры,
+    extensions соответсвующий пустому списку - [].
+
+У класса должны быть методы:
+
+    get_description, который принимает строку и возвращает описание к игре в виде названия игры и переданной строки:
+
+Minecraft это инди-игра в жанре песочницы с элементами выживания и открытым миром. 
+
+Где Minecraft - это название игры, берется из атрибута name объекта.
+
+    get_extensions, который возвращает все подключенные расширения в виде строки разделенной пробелами, если же список extensions пуст, возвращайте сообщение:
+
+Нет подключенных расширений   
+
+Также напишите миксин ExtensionMixin, чтобы к игре можно было подключать расширения.
+
+У миксина должно быть два метода:
+
+    add_extension, принимающий строку-название и добавляющий ее в список игры, также должен возвратить сообщение:
+
+Добавлено новое расширение Multiverse-Core для игры Minecraft. 
+
+где Multiverse-Core это строка - название расширения
+
+    remove_extension, удаляющий расширение по названию, и возращающий строку в формате:
+
+Multiverse-Core был отключен от Minecraft. 
+
+Если же такого расширения нет в списке должна возвращаться строка:
+
+Такого расширения нет в списке.
+
+```py
+class ExtensionMixin: 
+    def add_extension(self, extension): 
+        self.extensions.append(extension) 
+        return f'Добавлено новое расширение {extension} для игры {self.name}.'
+    
+    # как мы смогли сослаться на self.extensions, если наш класс не наследуется от класса Game? Разве не надо было использовать module как с CRUD? 
+
+    def remove_extension(self, deleted_game):
+        if deleted_game in self.extensions:
+            self.extensions.remove(deleted_game)
+            return f'{deleted_game} был отключен от {self.name}'
+        return 'Такого расширения нет в списке.'
+    
+class Game(ExtensionMixin): 
+    def __init__(self, type, name): 
+        self.type = type 
+        self.name = name 
+        self.extensions = [] 
+        
+    def get_description(self):
+        description = f'{self.type} в жанре песочницы с элементами выживания и открытым миром'
+        return f"{self.name} это {description}"
+    
+    def get_extensions(self): 
+        res = ' '.join(self.extensions)
+        if len(res) == 0:
+           return 'Нет подключенных расширений'
+        return res
+
+g = Game('инди игра', "Minecraft")
+print(g.get_description())
+print(g.add_extension('Tekken'))
+print(g.add_extension('Mario'))
+print(g.get_extensions())
+print(g.remove_extension('Tekken'))
+print(g.get_extensions())
+```
