@@ -151,3 +151,73 @@ get_human_info(student)
 def __init__(self, name, last_name):
         self.name = name
         self.last_name = last_name
+
+
+## Задание 4
+
+Объявите абстрактный класс геометрических фигур Shape и определите в нём абстрактный метод get_area() для расчёта площади фигуры, которые необходимо переопределить в дочерних классах.
+
+Затем, наследуйте от Shape три класса: Triangle, Square и Circle.
+
+    треугольник создаётся с заданными основанием base и высотой height
+
+    квадрат создаётся с заданной длиной стороны length
+
+    круг создаётся с заданным радиусом radius
+
+Переопределите в каждом из классов метод get_area() таким образом, чтобы он рассчитывал площадь для конкретной фигуры.
+
+Затем, создайте от каждого из трёх классов по экземпляру, и вызовите у каждого метод get_area()
+
+    Подсказка: для создания абстрактных классов воспользуйтесь модулем abc - https://docs.python.org/3/library/abc.html
+
+Ввод должен быть:
+
+print(triangle.get_area()) 
+print(square.get_area()) 
+print(circle.get_area()) 
+
+Вывод:
+
+12.5 
+25 
+314.1592653589793 
+```py
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def get_area(self):
+        pass
+
+class Triangle(Shape):
+    def __init__(self, base, height):
+        self.base = base
+        self.height = height
+    
+    def get_area(self):
+        return 1/2 * self.base * self.height
+
+class Square(Shape):
+    def __init__(self, length):
+        self.length = length
+
+    def get_area(self):
+        return self.length * self.length
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def get_area(self):
+        from math import pi
+        return pi * self.radius ** 2
+    
+triangle = Triangle(1,2)
+square = Square(564)
+circle = Circle(2)
+
+print(triangle.get_area()) 
+print(square.get_area()) 
+print(circle.get_area()) 
+```

@@ -157,8 +157,87 @@ class Shape(ABC):
 
 class Triangle(Shape):
     def __init__(self, base, height):
-        base и высотой height
+        self.base = base
+        self.height = height
+    
+    def get_area(self):
+        return 1/2 * self.base * self.height
 
 class Square(Shape):
-class Circle(Shape):
+    def __init__(self, length):
+        self.length = length
 
+    def get_area(self):
+        return self.length * self.length
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def get_area(self):
+        from math import pi
+        return pi * self.radius ** 2
+    
+triangle = Triangle(1,2)
+square = Square(564)
+circle = Circle(2)
+
+print(triangle.get_area()) 
+print(square.get_area()) 
+print(circle.get_area()) 
+
+'''
+Задание 5
+
+Создайте класс OS, экземпляры которого имеют аттрибут version - версия системы. От OS наследуйте три класса - Windows, MacOS, Linux.
+
+У всех трех классов должен быть метод copy который принимает в аргументы text и возвращает соответствующую строку.
+
+Создайте экземпляры класса, от Windows - в переменной win, от MacOS - mac, а от Linux в переменной lin.
+
+Примените к каждому объекту метод copy, следующим образом:
+
+Ввод должен быть:
+
+print(win.copy('Полиморфизм — одна из основных парадигм ООП'))
+ 
+print(mac.copy('Полиморфизм - разное поведение одного и того же метода в разных классах')) 
+ 
+print(lin.copy('На самом деле одинаковым является только имя метода, его исходный код зависит от класса'))
+
+Вывод должен быть:
+
+скопирован текст "Полиморфизм — одна из основных парадигм ООП" горячими клавишами CTRL + C
+ 
+
+скопирован текст "Полиморфизм - разное поведение одного и того же метода в разных классах" горячими клавишами COMMAND + C
+ 
+
+скопирован текст "На самом деле одинаковым является только имя метода, его исходный код зависит от класса" горячими клавишами CTRL + SHIFT + C
+'''
+
+class OS:
+    def __init__(self, version):
+        self.version = version
+
+class  Windows(OS):
+    def copy(self, text):
+        return f'скопирован текст "{text}" горячими клавишами CTRL + C'
+    
+class MacOS(OS):
+    def copy(self, text):
+        return f'скопирован текст "{text}" горячими клавишами COMMAND + C'
+    
+class Linux(OS):
+    def copy(self, text):
+        return f'скопирован текст "{text}" горячими клавишами CTRL + SHIFT + C'
+
+win = Windows(1)
+mac = MacOS(2)
+lin = Linux(3)
+
+print(win.copy('Полиморфизм — одна из основных парадигм ООП'))
+ 
+print(mac.copy('Полиморфизм - разное поведение одного и того же метода в разных классах')) 
+ 
+print(lin.copy('На самом деле одинаковым является только имя метода, его исходный код зависит от класса'))
