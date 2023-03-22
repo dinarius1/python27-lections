@@ -277,3 +277,74 @@ print(mac.copy('Полиморфизм - разное поведение одн�
  
 print(lin.copy('На самом деле одинаковым является только имя метода, его исходный код зависит от класса'))
 ```
+
+## Задание 6
+
+Создайте класс Language, экземпляры которого имеют такие свойства как level и type. Наследуйте от данного класса два других класса - Python и JavaScript. И у Python, и у JavaScript должно быть два метода:
+
+    write_function, принимает такие аргументы как func_name и arg
+    create_variable, с аргументами var_name, value
+
+Создайте экземпляр от класса Python в переменной py.
+
+Затем, примените методы к экземпляру класса Python:
+
+print(py.write_function('get_code', 'a')) 
+print(py.create_variable('name', 'John'))
+
+вывод должен быть такой:
+
+def get_code(a):    
+name = 'John'
+
+Создайте экземпляр от класса JavaScript в переменной js.
+
+Примените метод следующим образом:
+
+print(js.write_function('validate', 'form')) print(js.create_variable('password', 'john@123'))
+
+Вывод должен быть таким:
+
+function validate(form) {     }; 
+let password = 'john@123'
+
+```py
+class Language:
+    def __init__(self, level, type):
+        self.level = level
+        self.type = type
+
+class Python(Language):
+    def write_function(self, func_name, arg):
+        return f'def {func_name}({arg}):'
+    def create_variable(self, var_name, value):
+        if isinstance(value, str) == False:
+            return f"{var_name} = {value}"
+        return f"{var_name} = '{value}'"
+
+class JavaScript(Language):
+    def write_function(self, func_name, arg):
+        return f'function {func_name}({arg}) ' + "{     };"
+    def create_variable(self, var_name, value):
+        if isinstance(value, str) == False:
+            return f"let {var_name} = {value};"
+        return f"let {var_name} = '{value}';"
+    
+# function validate(form) {     }; 
+# let password = 'john@123'
+
+py = Python(1,2)
+js = JavaScript(1,3)
+
+print(py.write_function('get_code', 'a')) 
+print(py.create_variable('name', [1, 2, 3, 4]))
+
+print(js.write_function('validate', 'form')) 
+print(js.create_variable('password', [1, 2, 3, 4]))
+```
+> if isinstance(value, str) == False: - тут как раз мы проверяем , если наш объект явл экземпляром от класса str, то пусть будет такой вывод.
+
+> Мы можем использовать isinstance даже со встроенными классами (как str, list и тп)
+
+> При использовании ключа форматирования, нельзя чтобы было много пропусков(пробеллов/пустоты), а также нельзя использовтаь {} - так как он в данной конструкции по особоенному работает, поэтому надо писать так:
+> 327 - return f'function {func_name}({arg}) ' + "{     };" - нужно именно  ак 
