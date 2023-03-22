@@ -65,6 +65,12 @@ clock = AlarmClock()
 clock.current_time
 clock.alarm_on() 
 
+from datetime import datetime
+class Clock:
+    def current_time(self):
+        print(datetime.now().strftime('%H:%M:%S'))
+c = Clock
+print(c.current_time())
 '''
 Задание 4
 
@@ -189,6 +195,8 @@ p = Pyramid(10,10)
 print(p.get_volume())
 
 '''
+Здание 6
+
 Создайте класс ToDo, с аттрибутом класса, в виде словаря todos = {}.
 
 У класса должен быть один метод set_deadline, который принимает дату дедлайна (в виде "31/12/2021") и возвращает количество дней оставшихся до дедлайна.
@@ -205,7 +213,7 @@ print(p.get_volume())
 
 '''
 import datetime
-now_1 = datetime.datetime.now()
+now_1 = datetime.date.today()
 # print(now_1)
 
 class CreateMixin:
@@ -244,11 +252,11 @@ class ReadMixin:
 class ToDo(CreateMixin, DeleteMixin, UpdateMixin, ReadMixin):
     todos = {}
     def set_deadline(self,date):
-        self.date = date
-        res2 = self.date.split('/')
+        # self.date = date
+        res2 = date.split('/')
         res2 = list(reversed(res2))
         res2 = [int(i) for i in res2]
-        res3 = datetime.datetime(res2[0], res2[1], res2[2])
+        res3 = datetime.date(res2[0], res2[1], res2[2])
         # tdelta = res3 - now_1
         tdelta = now_1 - res3
         return tdelta.days
@@ -267,6 +275,8 @@ print(task.set_deadline('31/12/2021')) #выходит все время 443, а
 print(task.todos)
 
 '''
+Задание 7
+
 Напишите класс Game, с помощью которого можно создать объекты-игры, у объектов должны быть атрибуты:
 
     type_ - тип игры

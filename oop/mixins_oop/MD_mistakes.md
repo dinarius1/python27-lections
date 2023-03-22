@@ -86,6 +86,7 @@ clock.alarm_on()
 ```py
 import datetime
 t = str(datetime.datetime.now()).split()[1].split('.')[0]
+
 print(t)
 class Clock:
     def current_time(self):
@@ -101,7 +102,16 @@ class AlarmClock(Clock, Alarm):
 clock = AlarmClock()
 clock.current_time
 clock.alarm_on() 
+
+#или можно так
+from datetime import datetime
+class Clock:
+    def current_time(self):
+        print(datetime.now().strftime('%H:%M:%S'))
+c = Clock()
+print(c.current_time())
 ```
+> strftime('%H:%M:%S') - это специальная конструкция, которая позволяет вытаскивать время в правильном формате
 
 ## Задание 4
 
@@ -231,8 +241,93 @@ class Pyramid(Triangle, Square):
 
 p = Pyramid(10,10)
 print(p.get_volume())
-
 ```
+## Задание 6
+
+Создайте класс ToDo, с аттрибутом класса, в виде словаря todos = {}.
+
+У класса должен быть один метод set_deadline, который принимает дату дедлайна (в виде "31/12/2021") и возвращает количество дней оставшихся до дедлайна.
+
+Также, класс ToDo должен наследоваться от четырех миксинов: CreateMixin, DeleteMixin, UpdateMixin, ReadMixin:
+
+    в классе CreateMixin определите метод create, который принимет в себя задачу todo и ключ key по которому нужно добавить задачу в словарь todos, если ключ уже существует верните "Задача под таким ключом уже существует".
+
+    класс DeleteMixin должен содержать метод delete, который удаляет задачу по ключу key, который передается как аргумент, и возвращает сообщение 'удалили название задачу', где вместо слова название должно быть название задачи.
+
+    класс UpdateMixin должен содержать метод update, который принимает в себя ключ key и новое значение new_value и заменяет задачу под данным ключом на новое значение.
+
+    класс ReadMixin должен содержать метод read, который возвращает отсортированный список задач.
+
+```py
+import datetime
+now_1 = datetime.date.today()
+# print(now_1)
+
+class CreateMixin:
+    def create(self, key, todo):
+        model = self.__class__   #теперь в model - класс ProductCrud
+        obj = model()
+        obj.todo = todo
+        if key not in model.todos.keys():
+            model.todos[key] = obj.todo
+            return model.todos
+        return "Задача под таким ключом уже существует"
+
+class DeleteMixin:
+    def delete(self, key):
+        model = self.__class__   #теперь в model - класс ProductCrud
+        obj = model()
+        popped = model.todos.pop(key)
+        return popped
+        # return f"удалили {popped}"
+    
+class UpdateMixin:
+    def update(self, key, new_value):
+        model = self.__class__   #теперь в model - класс ProductCrud
+        obj = model()
+        obj.new_value = new_value
+        model.todos[key] = new_value
+        return model.todos
+    
+class ReadMixin:
+    def read(self):
+        model = self.__class__   #теперь в model - класс ProductCrud
+        obj = model()
+        return sorted(model.todos.items())
+
+
+class ToDo(CreateMixin, DeleteMixin, UpdateMixin, ReadMixin):
+    todos = {}
+    def set_deadline(self,date):
+        res2 = date.split('/')
+        res2 = list(reversed(res2))
+        #мы просим, чтобы нам вышел результат в обратном порядке (res2 - имеет тип даных - список), поэтомы он просто считывает ее задом наперед
+        res2 = [int(i) for i in res2]
+        res3 = datetime.date(res2[0], res2[1], res2[2])
+        #вытаскиваем именно дату, и задаем каждый элемент какое то место в дате
+        tdelta = now_1 - res3 
+        #у тип данных datetime мы можем найти интервал между датами через tdelta, даже не импортируя timedelta, так как к ним можно использовать оператор "-"
+        return tdelta.days
+      
+task = ToDo()
+
+print(task.create(1, 'Do housework'))
+print(task.create(1, 'Do housework'))
+print(task.create(2, 'Go for a walk'))
+print(task.update(1, 'Do homework'))
+print(task.delete(2))
+print(task.read())
+print(task.set_deadline('31/12/2021')) #выходит все время 443, а не -443, как хочет платформа
+print(task.todos)
+```
+> now_1 = datetime.date.today() - здесь мы пытаемся вытащить именно сегодняшний день с помощью встроенного метода date, у которого есть метод today()
+
+> используем переменную model = self.__class__ , чтобы в model был класс ProductCrud. Т.е мы говорим, что нам нужно найти класс от обекта c помощью магического метода __class__
+
+> в Миксине ридинг return sorted(model.todos.items()) - 296 строка, к словарям мы можем использовать функцию sorted(), он будет сортировать наш словарь по ключам. А чтобы выходил и ключ и значение элементов, то нужно использовать items, который возвращает кортеж
+
+> посмотри комментарии в последнем блоке кода
+
 ## Задание 7
 
 Напишите класс Game, с помощью которого можно создать объекты-игры, у объектов должны быть атрибуты:
