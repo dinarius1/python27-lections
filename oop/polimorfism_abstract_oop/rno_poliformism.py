@@ -242,3 +242,58 @@ print(mac.copy('Полиморфизм - разное поведение одн�
  
 print(lin.copy('На самом деле одинаковым является только имя метода, его исходный код зависит от класса'))
 
+#Task 6
+class Language:
+    def __init__(self, level, type):
+        self.level = level
+        self.type = type
+
+class Python(Language):
+    def write_function(self, func_name, arg):
+        return f'def {func_name}({arg}):'
+    def create_variable(self, var_name, value):
+        if isinstance(value, str) == False:
+            return f"{var_name} = {value}"
+        return f"{var_name} = '{value}'"
+
+class JavaScript(Language):
+    def write_function(self, func_name, arg):
+        return f'function {func_name}({arg}) ' + "{     };"
+    def create_variable(self, var_name, value):
+        if isinstance(value, str) == False:
+            return f"let {var_name} = {value};"
+        return f"let {var_name} = '{value}';"
+    
+# function validate(form) {     }; 
+# let password = 'john@123'
+
+py = Python(1,2)
+js = JavaScript(1,3)
+
+print(py.write_function('get_code', 'a')) 
+print(py.create_variable('name', [1, 2, 3, 4]))
+
+print(js.write_function('validate', 'form')) 
+print(js.create_variable('password', [1, 2, 3, 4]))
+
+
+#7 task
+class Money:
+    def __init__(self,country,symbol):
+        self.country = country
+        self.symbol = symbol
+class Dollar(Money):
+    rate = 84.80
+    def exchange(self, amount):
+        return f"$ {amount} равен {Dollar.rate * amount} сомам" 
+
+class Euro(Money):
+    rate = 98.40
+    def exchange(self, amount): 
+        return f"€ {amount} равен {Euro.rate * amount} сомам" 
+dol = Dollar('Alaska', '$') 
+eu = Euro('France', '€') 
+
+print(dol.exchange(100)) 
+print(eu.exchange(80))
+

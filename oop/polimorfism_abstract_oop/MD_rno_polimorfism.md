@@ -347,4 +347,73 @@ print(js.create_variable('password', [1, 2, 3, 4]))
 > Мы можем использовать isinstance даже со встроенными классами (как str, list и тп)
 
 > При использовании ключа форматирования, нельзя чтобы было много пропусков(пробеллов/пустоты), а также нельзя использовтаь {} - так как он в данной конструкции по особоенному работает, поэтому надо писать так:
-> 327 - return f'function {func_name}({arg}) ' + "{     };" - нужно именно  ак 
+> 327 - return f'function {func_name}({arg}) ' + "{     };" - нужно именно так
+
+
+## Таск 7
+
+Создайте класс Money, объекты которого имеют аттрибуты country и symbol. Наследуйте от него классы Dollar и Euro. У данных методов должна быть переменная класса rate, курс к сому, Dollar - 84.80, Euro - 98.40. Добавьте к этим классам метод exchange, который принимает количество которое нужно обменять в переменную amount и возвращает такую строку:
+
+$100 равен 8480.0 сомам
+€80 равен 7872.0 сомам
+
+```py
+class Money:
+    def __init__(self,country,symbol):
+        self.country = country
+        self.symbol = symbol
+class Dollar(Money):
+    rate = 84.80
+    def exchange(self, amount):
+        return f"$ {amount} равен {Dollar.rate * amount} сомам" 
+
+class Euro(Money):
+    rate = 98.40
+    def exchange(self, amount): 
+        return f"€ {amount} равен {Euro.rate * amount} сомам" 
+dol = Dollar('Alaska', '$') 
+eu = Euro('France', '€') 
+
+print(dol.exchange(100)) 
+print(eu.exchange(80))
+```
+> Чтобы ссылаться на атрибуты (+ методы) класса, то нужно так писать:
+Dollar.rate * amount, а не Dollar()
+
+> мы пишем Dollar() - только когда обявляеям экземпляр класса
+
+## Таск 8
+
+Создайте классы Mercury, Venus, Jupiter, которые наследуют метод __init__ от родительского класса Planet. У объектов данного класса должен быть аттрибут orbit, орбита в классе Venus состовляет 225 земных дней, Mercury 88 земных дней, а на Jupiter 12 дней. У всех этих классов должен быть метод get_age, принимающий возраст в переменную earth_age и расчитывающий ваш возраст на данной планете.
+
+Метод должен возвращать возраст на Mercury в годах, на Venus в днях и на Jupiter в часах. Например, если возраст earth_age равен 20:
+
+на Венере ваш возраст составляет 11842 дней
+на Юпитере ваш возраст составляет 5326080 часов
+на Меркурии ваш возраст составляет 82 лет
+
+```py
+class Planet: 
+    def __init__(self, orbit): 
+        self.orbit = orbit 
+
+class Mercury(Planet): 
+    def get_age(self, earth_age): 
+        return f'на Меркурии ваш возраст составляет {int(earth_age * 365 /self.orbit)} лет' 
+
+class Venus(Planet): 
+    def get_age(self, earth_age): 
+        return f'на Венере ваш возраст составляет {round(earth_age * 365 / self.orbit * 365)} дней' 
+
+class Jupiter(Planet): 
+    def get_age(self, earth_age): 
+        return f'на Юпитере ваш возраст составляет {round(earth_age * 365 // self.orbit * 365 * 24)} часов' 
+
+mercury = Mercury(88) 
+venus = Venus(225) 
+jupiter = Jupiter(12) 
+print(venus.get_age(20)) 
+print(jupiter.get_age(20))
+print(mercury.get_age(20))
+```
+> Один орбитальный оборот, так называемый сидерический год. Орбитальный оборот Земли продолжается 365,256 суток. А у Venus состовляет 225 земных дней,у Mercury 88 земных дней, а на Jupiter 12 дней. Поэтому и мы все время делили на 365
