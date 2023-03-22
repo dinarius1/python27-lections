@@ -403,4 +403,34 @@ def a():
   b = 9
   return a,b
 print(locals())
+
+```
+class MoneyFmt:
+    def __init__(self, amount):
+        self.amount = amount
+    
+    @staticmethod
+    def dollarize(float_num):
+        if float_num >= 0:
+            return f"${float_num:,.2f}"
+        float_num = abs(float_num)
+        return f"-${float_num:,.2f}"
+
+    def update(self, new_amount):
+        self.amount = new_amount
+    
+    def __repr__(self):
+        return str(self.amount)
+    
+    def __str__(self):
+        return self.dollarize(self.amount)
+
+cash = MoneyFmt(12345678.021) 
+print(cash) 
+cash.update(100000.4567) 
+print(cash) 
+cash.update(-0.3) 
+print(cash) 
+print(repr(cash))
+```
       
