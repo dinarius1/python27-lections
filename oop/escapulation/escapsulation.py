@@ -90,3 +90,4 @@ obj.age = 34
 del obj.age  #Exception: Cannot delete age, так как obj.age меньше 100
 print(obj.age)
 # obj.age = 115
+
