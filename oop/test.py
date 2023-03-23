@@ -35,9 +35,37 @@
 # print(res2)
 
 
-class A:
-    def __init__(self, name) -> None:
-        self.extensions = name
+# class A:
+#     def __init__(self, name) -> None:
+#         self.extensions = name
 
-a = A('hello')
-print(dir(a))
+# a = A('hello')
+# print(dir(a))
+
+'''
+Создайте класс Money, объекты которого имеют аттрибуты country и symbol. Наследуйте от него классы Dollar и Euro. У данных методов должна быть переменная класса rate, курс к сому, Dollar - 84.80, Euro - 98.40. Добавьте к этим классам метод exchange, который принимает количество которое нужно обменять в переменную amount и возвращает такую строку:
+'''
+
+class Money:
+    def __init__(self,country,symbol):
+        self.country = country
+        self.symbol = symbol
+class Dollar(Money):
+    rate = 84.80
+    def exchange(self, amount):
+        return f"$ {amount} равен {Dollar.rate * amount} сомам" 
+
+class Euro(Money):
+    rate = 98.40
+    def exchange(self, amount): 
+        return f"€ {amount} равен {Euro.rate * amount} сомам" 
+dol = Dollar('Alaska', '$') 
+eu = Euro('France', '€') 
+
+print(dol.exchange(100)) 
+print(eu.exchange(80))
+
+
+1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+
