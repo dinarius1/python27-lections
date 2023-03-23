@@ -56,13 +56,13 @@ print(car1.show_speed())
 20 
 '''
 class Car:
-    def __init__(self, speed):
-        self.__speed = speed
+    def __init__(self):
+        self.__speed = 0
     def set_speed(self, new_speed):
         self.__speed = new_speed
     def show_speed(self):
         return self.__speed
-car1 = Car(0) 
+car1 = Car() 
 print(car1.show_speed()) 
 car1.set_speed(20) 
 print(car1.show_speed()) 
