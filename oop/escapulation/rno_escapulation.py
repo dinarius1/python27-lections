@@ -66,3 +66,41 @@ car1 = Car()
 print(car1.show_speed()) 
 car1.set_speed(20) 
 print(car1.show_speed()) 
+
+'''
+Задание 4
+
+Перепишите класс Car из предыдущего задания.
+
+Перепишите метод set_speed() с использование декоратора @speed.setter, а метод show_speed() с использованием декоратора @property.
+
+Создайте обьект car1 класса Car.
+
+Ввод:
+
+car1 = Car() 
+print(car1.speed) 
+car1.speed = 20 
+print(car1.speed) 
+
+Вывод:
+
+0 
+20 
+'''
+class Car:
+    def __init__(self):
+        self.__speed = 0
+    @property
+    def show_speed(self):
+        return self.__speed
+    
+    @show_speed.setter
+    def speed(self, new_speed):
+        self.__speed = new_speed
+    
+car1 = Car() 
+print(car1.show_speed)
+
+car1.speed = 20
+print(car1.show_speed)
