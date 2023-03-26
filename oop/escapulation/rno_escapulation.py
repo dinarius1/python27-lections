@@ -185,3 +185,43 @@ john.number = None
 print(john.name) 
 print(john._phone_number) 
 print(john.number)
+
+'''
+Задание 8
+
+    Продолжая изменять логику предыдущего задания создайте класс Person у которого будут следующие атрибуты экземпляра класса: name (public), phone_number(protected) и сard_number(private).
+    При инициализации объекта проверяйте введенные имя. Для этого напишите приватный метод validate_name для валидации имени: данный метод будет проверять длину имени, если длина имени меньше двух то возвращайте имя по дефолту John,
+    Если же введенное пользователем имя больше двух, то необходимо возвращать имя с заглавной буквы (JOHN -> John, john -> John и тд).
+    Создайте экземпляр sam класса Person со значениями ("SAM", "+996 557 55 17 57" и "9999 9999 9999 9999") и выведите на экран все его атрибуты
+
+'''
+
+class Person: 
+    def __init__(self, name, phone_number, card_number): 
+        self.name = self.__validate_name(name)  #атрибут может иметь знаечение метода? 
+        self._phone_number = phone_number 
+        self.__card_number = card_number 
+    def __validate_name(self, name): 
+        if len(name) < 2: 
+            return "John" 
+        return name.title() 
+    def get_card_number(self): 
+        return self.__card_number 
+    def set_card_number(self, card_number): 
+        self.__card_number = card_number 
+
+sam = Person("SAM", "+996 557 55 17 57", "9999 9999 9999 9999") 
+print(sam.name) 
+print(sam._phone_number) 
+print(sam.get_card_number())
+
+'''
+Задание 9
+
+    На этот раз заказчик передумал и попросил вас переписать предыдущий класс, теперь его интересует только валидация номера телефона и номера карты.
+    Создайте класс Person у которого будут следующие атрибуты экземпляра класса: name (public), phone_number(protected) и сard_number(private). При инициализации объекта проверяйте введенный номер телефона и номер карты.
+    Для этого напишите защищенный метод validate_phone_number и приватный метод validate_card_number.
+    Метод validate_phone_number в первую очередь проверяет на то что бы номер был объектом от класса int иначе возвращаем None, во вторую - начинался с 996 *Метод validate_card_number в первую очередь также проверяет на то что бы номер карты был объектом от класса int иначе возвращаем None, далее нужно также проверять чтобы количество цифр в номере карт было ровно 16 иначе также возвращаем None.
+    Создайте экземпляр tolik класса Person c правильными данными и выведите на экран все его атрибуты
+
+'''
