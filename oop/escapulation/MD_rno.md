@@ -125,3 +125,23 @@ print(car1.show_speed)
 
 > причина этому заключается в том, что в декораторе проперти есть метод сеттер, и грубо говоря, когда мы используем декоратор сеттер, то мы перезаписываем этот метод у проперти на то, что мы напишем а данном декораторе
 
+## Задание 6
+
+    Создайте класс Person у которого будут следующие атрибуты экземпляра класса: name (public), phone_number(protected) и сard_number(private).
+    Создайте экземпляр "john" класса Person со значениями ("John", "+996 557 55 17 57" и "9999 9999 9999 9999") и выведите на экран все его атрибуты.
+
+```py
+class Person: 
+    def __init__(self, name, _phone_number, __card_number):
+        self.name = name 
+        self._phone_number = _phone_number
+        self.__card_number = __card_number
+    @property 
+    def number(self): 
+        return self.__card_number  
+john = Person("John", "+996 557 55 17 57","9999 9999 9999 9999") 
+print(john.name) 
+print(john._phone_number) 
+print(john.number)
+
+```

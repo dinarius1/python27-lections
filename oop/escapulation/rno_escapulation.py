@@ -104,3 +104,58 @@ print(car1.show_speed)
 
 car1.speed = 20
 print(car1.show_speed)
+
+'''
+Задание 5
+
+    Создайте класс Person и объявите в нем 3 атрибута класса: name (public), phone_number(protected) и сard_number(private),
+    Атрибуты класса будут равны следующим значениям: "John", "+996 557 55 17 57" и "9999 9999 9999 9999".
+    Создайте объект 'john' класса Person и выведите на экран все атрибуты класса.
+
+'''
+
+class Person:
+    name =  "John"
+    _phone_number = "+996 557 55 17 57"
+    __сard_number = "9999 9999 9999 9999"
+    @property
+    def сard_number(self):
+        return Person.__сard_number  #почему такой ответ не принимает платформа 
+john = Person()
+print(john.name)
+print(john._phone_number)
+print(john.сard_number)
+
+#правильное решение
+
+# class Person: 
+#     name = "John" 
+#     _phone_number = "+996 557 55 17 57" 
+#     __card_number = "9999 9999 9999 9999"
+#     @property 
+#     def number(self): 
+#         return self.__card_number  
+# john = Person() 
+# print(john.name) 
+# print(john._phone_number) 
+# print(john.number)
+
+'''
+Задание 6
+
+    Создайте класс Person у которого будут следующие атрибуты экземпляра класса: name (public), phone_number(protected) и сard_number(private).
+    Создайте экземпляр "john" класса Person со значениями ("John", "+996 557 55 17 57" и "9999 9999 9999 9999") и выведите на экран все его атрибуты.
+
+'''
+class Person: 
+    def __init__(self, name, _phone_number, __card_number):
+        self.name = name 
+        self._phone_number = _phone_number
+        self.__card_number = __card_number
+    @property 
+    def number(self): 
+        return self.__card_number  
+john = Person("John", "+996 557 55 17 57","9999 9999 9999 9999") 
+print(john.name) 
+print(john._phone_number) 
+print(john.number)
