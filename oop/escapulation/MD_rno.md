@@ -145,3 +145,29 @@ print(john._phone_number)
 print(john.number)
 
 ```
+
+## Задание 7
+
+    Снова создайте класс Person и объявите в нем 3 атрибута: name (public), phone_number(protected) и сard_number(private), атрибуты класса будут равны следующим значениям: "John", "+996 557 55 17 57" и "9999 9999 9999 9999".
+    Создайте объект "john" класса Person и измените все атрибуты экземпляра класса на значение None после выведите все атрибуты этого экземпляра класса.
+```py
+class Person: 
+    name = "John" 
+    _phone_number = "+996 557 55 17 57" 
+    __card_number = "9999 9999 9999 9999"
+    @property 
+    def number(self): 
+        return self.__card_number  
+    @number.setter
+    def number(self, new): 
+        self.__card_number = new
+    
+john = Person() 
+john.name = None
+john._phone_number = None
+john.number = None
+print(john.name) 
+print(john._phone_number) 
+print(john.number)
+```
+> чтобы поменять атрибуты 
