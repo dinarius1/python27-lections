@@ -372,4 +372,21 @@ print(game.get_level())
 game.set_level(10)
 print(game.get_level())
 
+'''
+Задание 13
+
+    Необходимо написать класс Game у которого есть приватный атрибут класса level который равен нулю. Напишите метод level с использование декоратора @property для предоставления доступа к атрибуту level.
+    Создайте экземпляр game класса Game. Выведите на экран значение атрибута level.
+
+'''
+class Game:
+    __level = 0
+
+    @property
+    def level(self):
+        return  self.__level
+
+game = Game()
+print(game.level)
+
 
