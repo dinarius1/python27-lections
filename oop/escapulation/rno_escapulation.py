@@ -329,10 +329,11 @@ Raychel ты не Tolik!
 class Game:
     __level = 0
     def __init__(self, name):
-        self.name = self.__validate_name(name)
-    
+        self.name = self.__validate_name(name)    #в знаечние переменной входит значение метода (то есть то,что записано у метода в return)
+        #внутри метода прописываем параметр name, чтобы мы могли его исопльзовать в методе????
+
     def __validate_name(self, name):
-        return name.title()
+        return name.title()       # пишем просто name, без ничего, так как мы работаем с параметром name, который мы передали в ините
 
     def set_level(self, new):
         if self.name == 'Tolik':
@@ -347,3 +348,28 @@ print(game._Game__level)
 game2 = Game('TOLIK')
 game2.set_level(5)
 print(game2._Game__level)
+
+'''
+Задание 12
+
+    Необходимо написать класс Game у которого есть приватный атрибут класса level который равен нулю и атрибут экземпляра класса name (ваше имя).
+    Так как атрибут класса level приватный и поэтому недоступен извне, необходимо реализовать два метода для работы с ним: get_level и set_level. Где get_level возвращает значение атрибута level и set_level принимает значение и присваивает его атрибуту level.
+    Создайте экземпляр game класса Game. Выведите на экран значение атрибута level затем присвойте ему значение 10 и выведите его на экран.
+'''
+class Game:
+    __level = 0
+    def __init__(self, name):
+        self.name = name
+    
+    def get_level(self):
+        return self.__level
+    
+    def set_level(self, new):
+       self.__level = new
+
+game = Game('R')
+print(game.get_level())
+game.set_level(10)
+print(game.get_level())
+
+
