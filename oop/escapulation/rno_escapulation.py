@@ -128,17 +128,17 @@ print(john.сard_number)
 
 #правильное решение
 
-# class Person: 
-#     name = "John" 
-#     _phone_number = "+996 557 55 17 57" 
-#     __card_number = "9999 9999 9999 9999"
-#     @property 
-#     def number(self): 
-#         return self.__card_number  
-# john = Person() 
-# print(john.name) 
-# print(john._phone_number) 
-# print(john.number)
+class Person: 
+    name = "John" 
+    _phone_number = "+996 557 55 17 57" 
+    __card_number = "9999 9999 9999 9999"
+    @property 
+    def number(self): 
+        return self.__card_number  
+john = Person() 
+print(john.name) 
+print(john._phone_number) 
+print(john.number)
 
 '''
 Задание 6
@@ -219,9 +219,60 @@ print(sam.get_card_number())
 Задание 9
 
     На этот раз заказчик передумал и попросил вас переписать предыдущий класс, теперь его интересует только валидация номера телефона и номера карты.
+
     Создайте класс Person у которого будут следующие атрибуты экземпляра класса: name (public), phone_number(protected) и сard_number(private). При инициализации объекта проверяйте введенный номер телефона и номер карты.
+
     Для этого напишите защищенный метод validate_phone_number и приватный метод validate_card_number.
-    Метод validate_phone_number в первую очередь проверяет на то что бы номер был объектом от класса int иначе возвращаем None, во вторую - начинался с 996 *Метод validate_card_number в первую очередь также проверяет на то что бы номер карты был объектом от класса int иначе возвращаем None, далее нужно также проверять чтобы количество цифр в номере карт было ровно 16 иначе также возвращаем None.
+
+    Метод validate_phone_number в первую очередь проверяет на то что бы номер был объектом от класса int иначе возвращаем None, 
+    во вторую - начинался с 996 
+    
+    *Метод validate_card_number в первую очередь также проверяет на то что бы номер карты был объектом от класса int иначе возвращаем None, далее нужно также проверять чтобы количество цифр в номере карт было ровно 16 иначе также возвращаем None.
     Создайте экземпляр tolik класса Person c правильными данными и выведите на экран все его атрибуты
 
 '''
+#мое 1 решение
+class Person: 
+    def __init__(self, name, _phone_number, __card_number): 
+        self.name = name
+        self._phone_number = self._validate_phone_number(_phone_number)
+        self.__card_number = self.__validate_card_number(__card_number)
+         
+    def _validate_phone_number(self,_phone_number):
+        if isinstance(_phone_number, int) != True:
+            return None
+        elif str(_phone_number).startswith('996') == True:
+            return _phone_number
+        
+    def __validate_card_number(self,__card_number):
+        if isinstance(__card_number, int) != True:
+            return None
+        elif len(str(__card_number)) == 16:
+            return __card_number
+        else:
+            return None
+
+# 2 решение - правильное, ЕСТЬ ВОПРОСЫ
+tolik = Person("tolik", 996557551757 , 9999999999999999)
+print(tolik.name)
+print(tolik._phone_number)
+print(tolik._Person__card_number)
+
+class Person: 
+    def __init__(self, name, phone_number, card_number): 
+        self.name = name 
+        self._phone_number = self._validate_phone_number(phone_number) 
+        self.__card_number = self.__validate_card_number(card_number)  #ПОЧЕМУ В ИНИТЕ ПРОСТО card_number, а в присваивании атрибута self.__card_number?
+    
+    def _validate_phone_number(self, phone_number): 
+        if isinstance(phone_number, int) and str(phone_number).startswith('996'): #т.е не надо прописывать что каждое условие должно быть верным, да???
+            return phone_number
+        return None 
+    def __validate_card_number(self, card_number): 
+        if isinstance(card_number, int) and len(str(card_number)) == 16: 
+            return card_number 
+        return None 
+tolik = Person('Sam', 996557551757, 9999999999999999) 
+print(tolik.name) 
+print(tolik._phone_number) 
+print(tolik._Person__card_number)
