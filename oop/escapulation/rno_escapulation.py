@@ -565,3 +565,45 @@ print(john.name) # John
 print(john.last_name) # Snow
 print(john.age) # 30
 print(john.email) # johnsnow@gmail.com
+
+'''
+Задание 17
+
+    Реализуйте класс Dad у которого будут следующие атрибуты класса: name который равен 'John', защищенный атрибут last_name который равен 'Snow' и приватный атрибут age равный 40.
+    Затем реализуйте класс Me, который будет наследоваться от класса Dad и будет содержать атрибуты name равный 'Sam', защищенный атрибут last_name равный фамилии отца и приватный атрибут age равный 10.
+    Также реализуйте 2 метода: about_me который выводит информацию об этом объекте в виде:
+
+'My name is Sam Snow and I am 10 years old'
+
+    И about_dad который выводит информацию об этом обьекте в виде:
+
+'My father is John Snow'. 
+
+    (Обратите внимание что в методе about_father мы не выводим атрибут age объекта отца, как этот атрибут приватный а это значит что он не будет доступен в дочерних классах).
+    Создайте экземпляр me класса Me и вызовите методы объекта (их два). Ожидаемый результат:
+
+My name is Sam Snow and I am 10 years old
+My father is John Snow
+
+'''
+
+class Dad:
+    name = 'John'
+    _last_name = 'Snow'
+    __age = 40
+
+class Me(Dad):
+    name = 'Sam'
+    __age = 10
+    
+    def about_me(self):
+        return f'My name is {self.name} {self._last_name} and I am {self._Me__age} years old'
+    
+    def about_my_father(self):
+        return f'My father is {super().name} {super()._last_name}'
+me = Me()
+print(me.about_me())
+print(me.about_my_father())
+    
+
+
