@@ -43,7 +43,6 @@ obj.swim()
 ```py
 class RadioMixin:
     def play_music(self, title):
-        title
         print(f"Песня называется {title}")
 
 class Auto(RadioMixin):

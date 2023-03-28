@@ -91,3 +91,7 @@ class Solution:
             if num2 in nums:
                 if ind != nums.index(num2):
                     return [ind, nums.index(num2)]
+                
+import datetime
+t = datetime.time.now()
+print(t)

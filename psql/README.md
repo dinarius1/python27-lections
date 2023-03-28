@@ -66,3 +66,72 @@ delete from product where price = 100;
 select * from product where title like '%iphone%';
 -- вывод продуктов, где название продукта начинается с iphone, и выведиться все айфоны, где есть слово "iphone". Т.е like - позволяет вывести все похожие запросы
 ```
+
+ПЕРЕПИСАТЬ ИЗ ГИТА
+
+```sql
+SELECT * FROM name_of_table ORDER BY column;
+-- сортировака записей по данному полю в порядке возрастания
+```
+
+```sql
+SELECT * FROM name_of_table ORDER BY column DESC;
+-- сортировака записей по данному полю в порядке убывания
+```
+
+```sql
+SELECT * FROM name_of_table LIMIT 10;
+-- вывод первых 10 записей, т.е LIMIT - устанавливает какого то ограничение (усвлоие ограничение)
+```
+
+```sql
+SELECT * FROM name_of_table OFFSET 10;
+-- пропускаем первые 10 записей
+```
+
+```sql
+SELECT * FROM name_of_table LIMIT 10 OFFSET 5;
+-- пропускаем первые 5 записей
+-- вытаскиваем 10 записей
+```
+
+# Обновление таблицы
+
+ПЕРЕПИСАТЬ ИЗ ГИТА3
+
+
+```sql
+ALTER TABLE name_of_table ADD column..... 
+```
+
+# Ограничения
+* UNIQUE - не разрешает дубликаты
+* NOT NULL - требует обязательного заполнения поля
+```sql
+shop=# create table test (
+shop(# id serial,
+shop(# field varchar(50) unique
+shop(# );
+
+
+alter table test add column not_null_field varchar(10) not null;
+```
+
+# Связи
+## Виды связей
+> Один к одному (one to one)
+* один человек - один профиль
+* один автор - одна автобиография
+
+> Один ко многим (one to many)
+* один блоггер - много постов
+* одна марка - много моделей
+* одна страна - много областей
+* одна земля - много языков
+
+> Многие ко многим (many to many)
+* один разработчик - много проектов. один проект - много разработчиков
+* один человек - много языков. один язык - много носителей этого языка
+
+
+
