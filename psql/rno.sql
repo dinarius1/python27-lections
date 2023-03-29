@@ -22,3 +22,6 @@ select title, year from work where year >= 1601 and year <= 1701;
 
 -- 11 task
 select longtitle from work where longtitle like '%the%';
+
+-- 12 task
+select distinct section from paragraph;
