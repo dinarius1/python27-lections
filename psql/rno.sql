@@ -25,3 +25,8 @@ select longtitle from work where longtitle like '%the%';
 
 -- 12 task
 select distinct section from paragraph;
+
+-- 13 task
+select chapter.chapterid, chapter.description, work.title
+from chapter join work
+on chapter.workid = work.workid;
