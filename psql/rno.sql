@@ -15,3 +15,4 @@ select avg(totalwords) as avg from work;
 select title from work where totalwords > 20563;
 
 -- 9 task
+select charname, speechcount from character where speechcount >= 15 and speechcount <= 30;
