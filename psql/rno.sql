@@ -19,3 +19,6 @@ select charname, speechcount from character where speechcount >= 15 and speechco
 
 -- 10 task
 select title, year from work where year >= 1601 and year <= 1701;
+
+-- 11 task
+select longtitle from work where longtitle like '%the%';
