@@ -16,3 +16,6 @@ select title from work where totalwords > 20563;
 
 -- 9 task
 select charname, speechcount from character where speechcount >= 15 and speechcount <= 30;
+
+-- 10 task
+select title, year from work where year >= 1601 and year <= 1701;
