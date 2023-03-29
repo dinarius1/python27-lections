@@ -30,3 +30,9 @@ select distinct section from paragraph;
 select chapter.chapterid, chapter.description, work.title
 from chapter join work
 on chapter.workid = work.workid;
+
+-- 14 task
+select paragraph.paragraphnum, work.title, work.year
+from paragraph join work on paragraph.workid = work.workid;
+
+-- 15 task
