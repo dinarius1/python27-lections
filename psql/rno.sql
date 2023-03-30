@@ -35,6 +35,8 @@ from character join character_work on character.charid = character_work.charid j
 --7 task
 SELECT ROUND(avg(speechcount)), work.title FROM character JOIN character_work ON character.charid = character_work.charid JOIN work ON character_work.workid = work.workid WHERE work.title = 'Romeo and Juliet' GROUP BY work.title; 
 
+-- 8 task
+SELECT section, SUM(wordcount) as sum FROM paragraph GROUP BY section;
 
 -- 9 task
 select charname, speechcount from character where speechcount >= 15 and speechcount <= 30;
