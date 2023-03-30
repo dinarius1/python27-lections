@@ -32,6 +32,8 @@ First Goth          |           4 | Titus Andronicus
 select character.charname, character.speechcount, work.title 
 from character join character_work on character.charid = character_work.charid join work on character_work.workid = work.workid;
 
+--7 task
+SELECT ROUND(avg(speechcount)), work.title FROM character JOIN character_work ON character.charid = character_work.charid JOIN work ON character_work.workid = work.workid WHERE work.title = 'Romeo and Juliet' GROUP BY work.title; 
 
 
 -- 9 task
