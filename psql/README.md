@@ -177,6 +177,54 @@ CREATE TABLE post (
     FOREIGN KEY (blogger_id) REFERENCES blogger (id)
 );
 ```
+## Реализация one to one в postgres
+```sql
+CREATE TABLE author (
+    serial primary key,
+    name varchar(50),
+    last_name varchar(70),
+    year date);
+);
+
+CREATE TABLE authorbiography(
+    id serial PRIMARY KEY, -- нужен, чтобы мы могли идентифицировать по нему, когда будем использовать FOREIGN KEY
+    published date,
+    body text,
+    author_id int UNIQUE, -- чтобы создать one - one, добавляем unique
+
+    CONSTRAINT fk_author_bio
+    FOREIGN KEY (author_id) REFERENCES author (id)  -- нужен, чтобы проверять наличия какого то поля в какой то таблице, и в случае если поле пустое, то будет выдавать ошибку
+);
+```
+
+## Реализация one to one в postgres
+```sql
+CREATE TABLE developer (
+    id serial PRIMARY KEY,
+    name varchar(50),
+    age int,
+    experience int
+);
+
+CREATE TABLE project (
+    id serial PRIMARY KEY,
+    title varchar(100),
+    tz text,
+    deadline date
+);
+
+CREATE TABLE dev_proj (
+    dev_id int,
+    proj_id int,
+
+CONSTRAINT fk_dev_m2m
+FOREIGN KEY (dev_id) REFERENCES developer (id) -- (dev_id) - сначала указываем текущий dev_id в этой таблице, затем ссылаемся на id из таблицы developer
+
+CONSTRAINT fk_proj_m2m
+FOREIGN KEY (proj_id) REFERENCES project (id)
+);
+
+```
 
 # JOINS
 > **JOIN** - иснтрукция, которая позволяет одним SELECT брать данные из двух таблиц (у которых есть связанные поля)
@@ -197,7 +245,19 @@ on blogger.id = post.blogger_id;
  post 4 | aaaa | bloger 4 | gggg@gmail.com |  23
  post 5 | ---  |          |                |    
 (5 rows)
+```
 
+```sql
+-- one2one/ one2many
+SELECT * FROM blogger
+JOIN post ON blogger.id = post.blogger_id;
+```
+
+```sql
+-- many2many
+SELECT * FROM developer
+JOIN dev_proj ON developer.id = dev_proj.dev_id;
+JOIN project ON project.id = dev_proj.proj_id;
 ```
 
 
