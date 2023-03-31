@@ -260,4 +260,83 @@ JOIN dev_proj ON developer.id = dev_proj.dev_id;
 JOIN project ON project.id = dev_proj.proj_id;
 ```
 
+## Агрегатные функции
+> все агрегатные функции используются с `group by`, он создает мини группы, с котороми можно совершать какие то вычисления
+
+> **SUM** - считает сумму всех записей в сгрупированном поле
+
+```sql
+select customer.name, SUM(product.price) from customer
+join cart on customer.id = cart.customer_id
+GROUP BY (customer.id);
+
+--     name    | sum  
+-- ------------+------
+--  customer 2 |  470
+--  customer 3 |  688
+--  customer 1 | 1079
+```
+
+> **AVG** - считает среднее значение всех записей в сгруппированном поле
+
+```sql
+select customer.name, AVG(product.price) from customer
+join cart on customer.id = cart.customer_id
+join product on product.id = cart.product_id
+group by (customer.id);
+
+--     name    |         avg          
+-- ------------+----------------------
+--  customer 2 | 470.0000000000000000
+--  customer 3 | 344.0000000000000000
+--  customer 1 | 359.6666666666666667
+
+```
+
+> **ARRAY_AGG** 
+ПЕРЕПИСАТЬ ИЗ ГИТА
+
+> **MIN/MAX** - выбирает минимальное, максимальное значение из всех записей в сгруппированном поле
+```sql
+select blogger.name, MAX(post.created_at), MIN(post.created_at) from blogger join post on blogger.id = post.blogger_id  
+GROUP BY (blogger.id);
+
+--    name    |    max     |    min     
+-- -----------+------------+------------
+--  blogger 2 | 2022-06-23 | 2013-05-10
+--  blogger 3 | 2022-08-15 | 2022-08-15
+--  blogger 1 | 2021-09-30 | 2020-08-01
+-- (3 rows)
+
+-- max - самый новый, min - самый поздний
+```
+
+> **COUNT** - считает количество записей в сгруппированном поле
+
+```sql
+select blogger.name, COUNT(post.id) from blogger 
+join post on blogger.id = post.blogger_id
+GROUP BY (blogger.id);
+
+--    name    | count 
+-- -----------+-------
+--  blogger 2 |     2
+--  blogger 3 |     1
+--  blogger 1 |     3
+
+```
+
+# Import/Export база данных 
+
+### Импортируем данные из файла в бд
+```bash
+psql db_name < file.sql
+#при этом db_name должна существовать
+```
+### Экспортируем данные из бд в файл
+write from db to file
+```bash
+pg_dump db_name > file.sql
+```
+
 
